@@ -57,3 +57,9 @@ body {
     background: linear-gradient(180deg, rgba(198,184,233,1) 0%, rgba(180,209,236,1) 100%); /* w3c */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#C6B8E9', endColorstr='#B4D1EC',GradientType=0 ); /* ie6-9 */
 }
+
+#credentials {
+    padding-top: 10px;
+    margin-bottom: 0;
+    font-size: 0.6em;
+}
