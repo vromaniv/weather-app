@@ -35,7 +35,7 @@ function getCurrentWeather(position) {
         let time = new Date();
         time = Math.round(time.getTime() / 1000);
         let isNight = sunrise > time || sunset < time ? true : false;
-
+        console.log(weather, isNight);
         setIcon(weather, isNight);
 
         console.log(JSON.stringify(json));
@@ -47,7 +47,7 @@ function setIcon(weather, isNight) {
         case 'Clear':
             if (isNight) {
                 $('#icon').fadeOut(10, function () {
-                    $(this).attr('src', 'icons/moon.png');
+                    $(this).attr('src', 'icons/moon.png').fadeIn(100);
                 });
             } else {
                 $('#icon').fadeOut(10, function () {
