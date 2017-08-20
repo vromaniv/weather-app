@@ -65,6 +65,11 @@ function setIcon(weather, isNight) {
                 $(this).attr('src', 'icons/cloudy.png');
             });
             break;
+        case 'Thunderstorm':
+            $('#icon').fadeOut(10, function () {
+                $(this).attr('src', 'icons/storm.png');
+            });
+            break;
         default:
             $('#icon').fadeOut(10, function () {
                 $(this).attr('src', 'icons/cloudy.png');
