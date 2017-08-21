@@ -57,22 +57,22 @@ function setIcon(weather, isNight) {
             break;
         case 'Rain':
             $('#icon').fadeOut(10, function () {
-                $(this).attr('src', 'icons/rain.png');
+                $(this).attr('src', 'icons/rain.png').fadeIn(100);
             });
             break;
         case 'Clouds':
             $('#icon').fadeOut(10, function () {
-                $(this).attr('src', 'icons/cloudy.png');
+                $(this).attr('src', 'icons/cloudy.png').fadeIn(100);
             });
             break;
         case 'Thunderstorm':
             $('#icon').fadeOut(10, function () {
-                $(this).attr('src', 'icons/storm.png');
+                $(this).attr('src', 'icons/storm.png').fadeIn(100);
             });
             break;
         default:
             $('#icon').fadeOut(10, function () {
-                $(this).attr('src', 'icons/cloudy.png');
+                $(this).attr('src', 'icons/cloudy.png').fadeIn(100);
             });
     }
 };
