@@ -107,8 +107,10 @@ $(document).on('click', '#degrees', function () {
 
     if (isCelsius) {
         temperature = temperature * 9 / 5 + 32;
+        $('#degrees').html(' °F');
     } else {
         temperature = Math.round((temperature - 32) * 5 / 9);
+        $('#degrees').html(' °C');
     }
 
     $('#temperature #number').html(temperature);
