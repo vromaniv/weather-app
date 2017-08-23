@@ -15,6 +15,10 @@ function getCurrentWeather(position) {
     $.getJSON("https://fcc-weather-api.glitch.me/api/current?lat=" + lat + "&lon=" + lon, function (json) {
         let temperature = Math.round(json.main.temp);
         let weather = json.weather[0].main;
+        let weather_id = json.weather[0].id;
+        weather = weather == 'Atmosphere' ? 'Fog' : weather;
+        weather = weather_id == 801 ? 'Partly Cloudy' : weather;
+        weather = weather_id == 803 ? 'Partly Cloudy' : weather;
         let city = json.name;
         let sunrise = json.sys.sunrise;
         let sunset = json.sys.sunset;
@@ -35,10 +39,7 @@ function getCurrentWeather(position) {
         let time = new Date();
         time = Math.round(time.getTime() / 1000);
         let isNight = sunrise > time || sunset < time ? true : false;
-        console.log(weather, isNight);
         setIcon(weather, isNight);
-
-        console.log(JSON.stringify(json));
     });
 }
 
@@ -60,9 +61,30 @@ function setIcon(weather, isNight) {
                 $(this).attr('src', 'icons/rain.png').fadeIn(100);
             });
             break;
+        case 'Drizzle':
+            $('#icon').fadeOut(10, function () {
+                $(this).attr('src', 'icons/drizzle.png').fadeIn(100);
+            });
+            break;
         case 'Clouds':
             $('#icon').fadeOut(10, function () {
                 $(this).attr('src', 'icons/cloudy.png').fadeIn(100);
+            });
+            break;
+        case 'Partly Cloudy':
+            if (isNight) {
+                $('#icon').fadeOut(10, function () {
+                    $(this).attr('src', 'icons/cloudy-night.png').fadeIn(100);
+                });
+            } else {
+                $('#icon').fadeOut(10, function () {
+                    $(this).attr('src', 'icons/cloudy-day.png').fadeIn(100);
+                });
+            }
+            break;
+        case 'Snow':
+            $('#icon').fadeOut(10, function () {
+                $(this).attr('src', 'icons/snowing.png').fadeIn(100);
             });
             break;
         case 'Thunderstorm':
@@ -70,10 +92,11 @@ function setIcon(weather, isNight) {
                 $(this).attr('src', 'icons/storm.png').fadeIn(100);
             });
             break;
-        default:
+        case 'Atmosphere':
             $('#icon').fadeOut(10, function () {
-                $(this).attr('src', 'icons/cloudy.png').fadeIn(100);
+                $(this).attr('src', 'icons/fog.png').fadeIn(100);
             });
+            break;
     }
 };
 
